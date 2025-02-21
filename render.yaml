@@ -1,17 +1,14 @@
 services:
   - type: web
-    name: websocket-server
+    name: backend
     env: python
     plan: free
-    buildCommand: "pip install -r backend/requirements.txt"
-    startCommand: "python backend/main.py"
+    buildCommand: ""  # No build step needed
+    startCommand: "python backend/main.py"  # Start your WebSocket server
     envVars:
       - key: PORT
         value: 8080
 
-  - type: web
-    name: frontend-server
-    env: static
-    plan: free
-    buildCommand: ""
-    staticPublishPath: frontend
+  - type: static
+    name: frontend
+    staticPublishPath: frontend  # Adjust if your frontend files are in a different folder
