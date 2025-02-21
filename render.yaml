@@ -4,11 +4,14 @@ services:
     env: python
     plan: free
     buildCommand: ""  # No build step needed
-    startCommand: "python backend/main.py"  # Start your WebSocket server
+    startCommand: "python backend/main.py"  # Starts your WebSocket server
     envVars:
       - key: PORT
         value: 8080
 
-  - type: static
+  - type: web
     name: frontend
-    staticPublishPath: frontend  # Adjust if your frontend files are in a different folder
+    env: static
+    plan: free
+    buildCommand: ""  # No build step needed
+    staticPublishPath: frontend  # Ensure this contains `index.html`, `script.js`
